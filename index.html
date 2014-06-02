@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Gym metronome</title>
+    </head>
+    <body>
+        <div class="app">
+            <h1>Gym Metronome</h1>
+            <div id="tlbAdd">
+                <input type="test" id="tbTime"/>
+                <button id="btnAdd">Add</button>
+                <br>
+                <button id="btnClear">Clear</button>
+                <button id="btnStart">Start</button>
+                <button id="btnStop">Stop</button>
+            </div>
+            <div id="tblTimers">
+                <div id="timerBase" data-array-index="-1">
+                    <span class="timer">10</span>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>
