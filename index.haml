@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %link{:rel => "stylesheet", :type => "text/css", :href => "css/reset.css"}
+    %link{:rel => "stylesheet", :type => "text/css", :href => "css/index.css"}
+    %title Gym metronome
+  %body
+    .app
+      %h1 Gym metronome
+      #tblAdd
+        %input#tbTime{:type => "text"}
+        %button#btnAdd Add
+        %br
+        %button#btnClear Clear
+        %button#btnStart Start
+        %button#btnStop Stop
+      #tblTimers
+        #timerBase{"data-array-index" => "-1"}
+          %span.timer 10
+    %script{:type => "text/javascript", :src => "js/jquery-2.1.1.min.js"}
+    %script{:type => "text/javascript", :src => "js/index.js"}
+    %script{:type => "text/javascript"}
+      app.initialize();
