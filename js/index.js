@@ -1,22 +1,9 @@
 (function() {
-  var root;
-
-  root = typeof exports !== "undefined" && exports !== null ? exports : this;
-
-  root.timers = [];
-
-  root.currentIndex = null;
-
-  root.app = {
-    initialize: function() {
-      return this.bindEvents();
-    },
-    bindEvents: function() {
-      $("#btnAdd").click(this.btnAddClicked);
-      $("#btnClear").click(this.btnClearClicked);
-      return $("#btnStart").click(this.btnStartClicked);
-    },
-    btnAddClicked: function() {
+  $().ready(function() {
+    var currentIndex, startTimer, timers;
+    timers = [];
+    currentIndex = null;
+    $("#btnAdd").click(function() {
       var d, x;
       d = $("#timerBase").clone();
       x = timers.push(d);
@@ -26,24 +13,47 @@
       d.appendTo("#tblTimers");
       d.show(500);
       return $("#tbTime").val("");
-    },
-    btnClearClicked: function() {
-      var t, _i, _len, _results;
-      _results = [];
+    });
+    $("#btnClear").click(function() {
+      var t, _i, _len;
       for (_i = 0, _len = timers.length; _i < _len; _i++) {
         t = timers[_i];
-        _results.push(t !== null ? t.hide(500) : void 0);
+        if (t !== null) {
+          t.hide(500);
+        }
       }
-      return _results;
-    },
-    btnStartClicked: function() {
-      var d;
-      if (root.currentIndex === null) {
-        root.currentIndex = 0;
-        d = root.timers[root.currentIndex];
-        return alert(d.children(".timer").text());
+      return timers = [];
+    });
+    startTimer = function() {
+      var d, period, timer;
+      if (currentIndex === null) {
+        currentIndex = 0;
       }
-    }
-  };
+      if (currentIndex === timers.length) {
+        return;
+      }
+      d = timers[currentIndex];
+      period = 1000;
+      return timer = $.timer(period, function() {
+        var x;
+        x = d.children(".timer").text();
+        x -= period / 1000;
+        d.children(".timer").text(x);
+        if (x <= 0) {
+          d.effect("highlight", {
+            color: "#F6FF00"
+          }, 1000);
+          timer.stop();
+          currentIndex++;
+          return startTimer();
+        } else {
+          return currentIndex = null;
+        }
+      });
+    };
+    return $("#btnStart").click(function() {
+      return startTimer();
+    });
+  });
 
 }).call(this);

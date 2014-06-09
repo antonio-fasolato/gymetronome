@@ -1,33 +1,41 @@
-root = exports ? this
+$().ready ->
+    timers = []
+    currentIndex = null
 
-root.timers = []
-root.currentIndex = null
+    $("#btnAdd").click ->
+      d = $("#timerBase").clone()
+      
+      x = timers.push(d)
+      d.attr("data-array-index", x - 1)
+      d.attr("data-initial-value", $("#tbTime").val())
+      d.children(".timer").text($("#tbTime").val())
+      d.appendTo("#tblTimers")
+      d.show(500)
+      $("#tbTime").val("")
 
-root.app =
-    initialize : ->
-        this.bindEvents();
-
-    bindEvents : ->
-        $("#btnAdd").click(this.btnAddClicked)
-        $("#btnClear").click(this.btnClearClicked)
-        $("#btnStart").click(this.btnStartClicked)
-
-    btnAddClicked: ->
-          d = $("#timerBase").clone()
-          
-          x = timers.push(d)
-          d.attr("data-array-index", x - 1)
-          d.attr("data-initial-value", $("#tbTime").val())
-          d.children(".timer").text($("#tbTime").val())
-          d.appendTo("#tblTimers")
-          d.show(500)
-          $("#tbTime").val("")
-
-    btnClearClicked: ->
+    $("#btnClear").click ->
         (t.hide 500 if t != null) for t in timers
+        timers = []
 
-    btnStartClicked: ->
-        if root.currentIndex == null
-            root.currentIndex = 0;
-            d = root.timers[root.currentIndex]
-            alert d.children(".timer").text()
+    startTimer = ->
+        if currentIndex == null
+            currentIndex = 0;
+        if currentIndex == timers.length
+            return
+        d = timers[currentIndex]
+        period = 1000
+        timer = $.timer period, ->
+            x = d.children(".timer").text()
+            x -= period / 1000
+            d.children(".timer").text(x)
+            if x <= 0
+                d.effect "highlight", {color:"#F6FF00"}, 1000
+                timer.stop()
+                currentIndex++
+                startTimer()
+            else
+                #fine
+                currentIndex = null
+
+    $("#btnStart").click ->
+        startTimer()
