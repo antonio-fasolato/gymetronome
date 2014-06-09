@@ -25,17 +25,19 @@
       return timers = [];
     });
     startTimer = function() {
-      var d, period, timer;
-      if (currentIndex === null) {
-        currentIndex = 0;
-      }
-      if (currentIndex === timers.length) {
-        return;
-      }
-      d = timers[currentIndex];
+      var period, timer;
       period = 1000;
       return timer = $.timer(period, function() {
-        var x;
+        var d, x;
+        console.log("Tick - currentIndex [" + currentIndex + "]");
+        if (currentIndex === null) {
+          currentIndex = 0;
+        }
+        if (currentIndex === timers.length) {
+          timer.stop();
+          return;
+        }
+        d = timers[currentIndex];
         x = d.children(".timer").text();
         x -= period / 1000;
         d.children(".timer").text(x);
@@ -43,11 +45,7 @@
           d.effect("highlight", {
             color: "#F6FF00"
           }, 1000);
-          timer.stop();
-          currentIndex++;
-          return startTimer();
-        } else {
-          return currentIndex = null;
+          return currentIndex++;
         }
       });
     };

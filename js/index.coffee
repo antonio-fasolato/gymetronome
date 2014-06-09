@@ -18,24 +18,22 @@ $().ready ->
         timers = []
 
     startTimer = ->
-        if currentIndex == null
-            currentIndex = 0;
-        if currentIndex == timers.length
-            return
-        d = timers[currentIndex]
         period = 1000
         timer = $.timer period, ->
+            console.log "Tick - currentIndex [#{currentIndex}]"
+            if currentIndex == null
+                currentIndex = 0;
+            if currentIndex == timers.length
+                timer.stop()
+                return
+            d = timers[currentIndex]
+
             x = d.children(".timer").text()
             x -= period / 1000
             d.children(".timer").text(x)
             if x <= 0
                 d.effect "highlight", {color:"#F6FF00"}, 1000
-                timer.stop()
                 currentIndex++
-                startTimer()
-            else
-                #fine
-                currentIndex = null
 
     $("#btnStart").click ->
         startTimer()
