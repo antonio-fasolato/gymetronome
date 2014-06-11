@@ -17,28 +17,38 @@
 
     %title Gym metronome
   %body{:role => "document"}
-    .navbar.navbar-inverse.navbar-fixed-top
-      .container
+    %nav.navbar.navbar-inverse{:role => "navigation"}
+      .container-fluid
         .navbar-header
-          %button.navbar-toggle{:type => "button", "data-toggle" => "collapse", "data-target" => ".navbar-collapse"}
+          %button.navbar-toggle{:type => "button", "data-toggle" => "collapse", "data-target" => "#collapse-menu"}
             %span.sr-only Toggle navigation
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand{:href => "#"}Gym metronome
-        .navbar-collapse.collapse
+          %span.navbar-brand 
+            Gym metronome &nbsp;
+            %a{:href => "#"}
+              %span.glyphicon.glyphicon-plus
+
+        #collapse-menu.navbar-collapse.collapse
           %ul.nav.navbar-nav
+            %li
+              %a{:href => "#"}Aggiungi Timer
+            %li.divider
+            %li.dropdown-header
+              Timers
+              %span.badge 3
             %li.active
-              %a{:href => "#"}Home
+              %a{:href => "#"}Timer 1
             %li
-              %a{:href => "#about"}About
+              %a{:href => "#"}Timer 2
             %li
-              %a{:href => "#Contacts"}Contacts
+              %a{:href => "#"}Timer 3
 
     .container{:role => "main"}
       .panel.panel-default
         .panel-heading 
-          %h3.panel-title Aggiungi elemento
+          %h3.panel-title Aggiungi intervallo
         .panel-body
           .input-group
             %span.input-group-addon
@@ -46,16 +56,19 @@
             %input#tbTime.form-control{:type => "text"}
             %span.input-group-btn
               %button#btnAdd.btn.btn-primary{:type => "button"} Add
-          .btn-group.btn-group-justified
+
+      .well
+        %ul#tblTimers.list-group
+          %li#timerBase.list-group-item{"data-array-index" => "-1"}
+            %span.timer 10
+
+    .navbar.navbar-inverse.navbar-fixed-bottom
+      .container
+        .navbar-header
+          .btn-group.btn-group-justified.btn-sm
             .btn-group
               %button#btnClear.btn.btn-default{:type => "button"} Clear
             .btn-group
               %button#btnStart.btn.btn-success{:type => "button"} Start
             .btn-group
               %button#btnStop.btn.btn-danger{:type => "button"} Stop
-
-      .panel.panel-default
-        .panel-body
-          %ul#tblTimers.list-group
-            %li#timerBase.list-group-item{"data-array-index" => "-1"}
-              %span.timer 10

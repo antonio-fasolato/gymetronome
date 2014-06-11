@@ -15,36 +15,49 @@
     <title>Gym metronome</title>
   </head>
   <body role='document'>
-    <div class='navbar navbar-inverse navbar-fixed-top'>
-      <div class='container'>
+    <nav class='navbar navbar-inverse' role='navigation'>
+      <div class='container-fluid'>
         <div class='navbar-header'>
-          <button class='navbar-toggle' data-target='.navbar-collapse' data-toggle='collapse' type='button'>
+          <button class='navbar-toggle' data-target='#collapse-menu' data-toggle='collapse' type='button'>
             <span class='sr-only'>Toggle navigation</span>
             <span class='icon-bar'></span>
             <span class='icon-bar'></span>
             <span class='icon-bar'></span>
           </button>
-          <a class='navbar-brand' href='#'>Gym metronome</a>
+          <span class='navbar-brand'>
+            Gym metronome &nbsp;
+            <a href='#'>
+              <span class='glyphicon glyphicon-plus'></span>
+            </a>
+          </span>
         </div>
-        <div class='navbar-collapse collapse'>
+        <div class='navbar-collapse collapse' id='collapse-menu'>
           <ul class='nav navbar-nav'>
+            <li>
+              <a href='#'>Aggiungi Timer</a>
+            </li>
+            <li class='divider'></li>
+            <li class='dropdown-header'>
+              Timers
+              <span class='badge'>3</span>
+            </li>
             <li class='active'>
-              <a href='#'>Home</a>
+              <a href='#'>Timer 1</a>
             </li>
             <li>
-              <a href='#about'>About</a>
+              <a href='#'>Timer 2</a>
             </li>
             <li>
-              <a href='#Contacts'>Contacts</a>
+              <a href='#'>Timer 3</a>
             </li>
           </ul>
         </div>
       </div>
-    </div>
+    </nav>
     <div class='container' role='main'>
       <div class='panel panel-default'>
         <div class='panel-heading'>
-          <h3 class='panel-title'>Aggiungi elemento</h3>
+          <h3 class='panel-title'>Aggiungi intervallo</h3>
         </div>
         <div class='panel-body'>
           <div class='input-group'>
@@ -56,7 +69,20 @@
               <button class='btn btn-primary' id='btnAdd' type='button'>Add</button>
             </span>
           </div>
-          <div class='btn-group btn-group-justified'>
+        </div>
+      </div>
+      <div class='well'>
+        <ul class='list-group' id='tblTimers'>
+          <li class='list-group-item' data-array-index='-1' id='timerBase'>
+            <span class='timer'>10</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class='navbar navbar-inverse navbar-fixed-bottom'>
+      <div class='container'>
+        <div class='navbar-header'>
+          <div class='btn-group btn-group-justified btn-sm'>
             <div class='btn-group'>
               <button class='btn btn-default' id='btnClear' type='button'>Clear</button>
             </div>
@@ -67,15 +93,6 @@
               <button class='btn btn-danger' id='btnStop' type='button'>Stop</button>
             </div>
           </div>
-        </div>
-      </div>
-      <div class='panel panel-default'>
-        <div class='panel-body'>
-          <ul class='list-group' id='tblTimers'>
-            <li class='list-group-item' data-array-index='-1' id='timerBase'>
-              <span class='timer'>10</span>
-            </li>
-          </ul>
         </div>
       </div>
     </div>
