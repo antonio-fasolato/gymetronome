@@ -44,12 +44,15 @@
             %span.input-group-addon
               %span.glyphicon.glyphicon-plus
             %input#tbTime.form-control{:type => "text"}
-          .input-group
-            %button#btnAdd.btn.btn-lg.btn-default{:type => "button"} Add
-          .input-group
-            %button#btnClear.btn.btn-lg.btn-default{:type => "button"} Clear
-            %button#btnStart.btn.btn-lg.btn-default{:type => "button"} Start
-            %button#btnStop.btn.btn-lg.btn-default{:type => "button"} Stop
+            %span.input-group-btn
+              %button#btnAdd.btn.btn-primary{:type => "button"} Add
+          .btn-group.btn-group-justified
+            .btn-group
+              %button#btnClear.btn.btn-default{:type => "button"} Clear
+            .btn-group
+              %button#btnStart.btn.btn-success{:type => "button"} Start
+            .btn-group
+              %button#btnStop.btn.btn-danger{:type => "button"} Stop
 
       .panel.panel-default
         .panel-body
