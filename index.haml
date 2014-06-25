@@ -60,7 +60,16 @@
       .well
         %ul#tblTimers.list-group
           %li#timerBase.list-group-item{"data-array-index" => "-1"}
-            %span.timer 10
+            .container-fluid
+              .row
+                .col-xs-2
+                  02:00
+                .col-xs-7
+                  %span.timer-description Timer 1
+                .col-xs-1
+                  %span.glyphicon.glyphicon-play-circle
+                .col-xs-2
+                  %span.timer 00:10
 
     .navbar.navbar-inverse.navbar-fixed-bottom
       .container

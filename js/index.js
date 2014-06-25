@@ -1,15 +1,30 @@
 (function() {
   $().ready(function() {
-    var currentIndex, startTimer, timers;
+    var currentIndex, pad, startTimer, timers;
     timers = [];
     currentIndex = null;
+    pad = function(n, width, z) {
+      var toReturn;
+      z = z || '0';
+      n = n + '';
+      toReturn = '';
+      if (n.length >= width) {
+        toReturn = n;
+      } else {
+        toReturn = new Array(width - n.length + 1).join(z) + n;
+      }
+      return toReturn;
+    };
     $("#btnAdd").click(function() {
-      var d, x;
+      var d, date, seconds, x;
       d = $("#timerBase").clone();
       x = timers.push(d);
       d.attr("data-array-index", x - 1);
       d.attr("data-initial-value", $("#tbTime").val());
-      d.children(".timer").text($("#tbTime").val());
+      seconds = $("#tbTime").val();
+      date = new Date(1970, 0, 1);
+      date.setSeconds(seconds);
+      d.find(".timer").text(pad(date.getMinutes(), 2) + ":" + pad(date.getSeconds(), 2));
       d.appendTo("#tblTimers");
       d.show(500);
       return $("#tbTime").val("");
