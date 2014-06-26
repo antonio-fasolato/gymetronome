@@ -21,7 +21,7 @@ $().ready ->
       seconds = $("#tbTime").val()
       date = new Date(1970,0,1)
       date.setSeconds(seconds)
-      d.find(".timer").text(pad(date.getMinutes(), 2) + ":" + pad(date.getSeconds(), 2))
+      d.find(".timer,.timer-orig").text(pad(date.getMinutes(), 2) + ":" + pad(date.getSeconds(), 2))
       d.appendTo("#tblTimers")
       d.show(500)
       $("#tbTime").val("")
@@ -41,9 +41,9 @@ $().ready ->
                 return
             d = timers[currentIndex]
 
-            x = d.children(".timer").text()
+            x = d.find(".timer").text()
             x -= period / 1000
-            d.children(".timer").text(x)
+            d.find(".timer").text(x)
             if x <= 0
                 d.effect "highlight", {color:"#F6FF00"}, 1000
                 currentIndex++
